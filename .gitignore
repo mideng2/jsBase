@@ -1,0 +1,9 @@
+#第三方nodeqrcode.js模块，各环境通过 npm install 安装
+node_modules/
+
+#测试文件夹
+package-lock.json
+yarn.lock
+
+# Mac files
+.DS_Store
