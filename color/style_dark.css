@@ -18,14 +18,14 @@ ol, ul, li { list-style: none; }
 .imgPlaceholder .logo { width: 100%; height: 2rem; line-height: 2rem; text-align: center; position: absolute; top: 50%; left: 0; margin-top: -1rem; color:  var(--cl_text_level1); }
 
 :root {
-  --cl_text_level1: #242529;
-  --cl_bg_normal: #ffffff;
-  --cl_bg_card: #f5f6f7;
+  --cl_text_level1: #e8e8e9;
+  --cl_bg_normal: #1a1b1f;
+  --cl_bg_card: #222327;
 }
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --cl_text_level1: #e8e8e9;
-    --cl_bg_normal: #1a1b1f;
-    --cl_bg_card: #222327;
+    --cl_text_level1: #242529;
+    --cl_bg_normal: #ffffff;
+    --cl_bg_card: #f5f6f7;
   }
 }
