@@ -703,6 +703,17 @@ var throtteScroll = throttle(function() {
   console.log('throtte');
 }, 1000);
 window.onscroll = throtteScroll;
+
+// this指向
+let ff = function () {
+  let that1 = this
+  return function () {
+    let that2 = this
+    console.log(that1 === that2)
+  }
+}
+ff()() // true
+
 // 函数柯里化实现
 // 其实我们无时无刻不在使用柯里化函数，只是没有将它总结出来而已。它的本质就是将一个参数很多的函数分解成单一参数的多个函数。
 
