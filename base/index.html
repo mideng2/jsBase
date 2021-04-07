@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /**
+     * this 浏览器相关
+     */
+    /**
+     * 指向window
+     * 多层嵌套，内部的this指向丢失，指向了window
+     */
+    // var length = 4
+    // function callback() {
+    //   console.log(this, this.length)
+    // }
+    // const object = {
+    //   length: 5,
+    //   method() {
+    //     console.log('othis', this) // object
+    //     callback()
+    //   }
+    // }
+    // object.method(callback) // window 4
+
+    // /**
+    //  * setTimeout延迟相关
+    //  */
+    // const object = {
+    //   message: 'hello world',
+
+    //   logMessage() {
+    //     console.log(this, this.message)
+    //   }
+    // }
+    // setTimeout(object.logMessage, 1000) // undefined
+
+    // /**
+    //  * 箭头函数
+    //  * 当前层是object，上一层是window
+    //  * 和普通函数做对比，箭头函数是普通函数的上一层
+    //  */
+    // const object = {
+    //   who: 'World',
+    //   greet() {
+    //     console.log('n t', this)
+    //     return `Hello, ${this.who}!`
+    //   },
+    //   farewell: () => {
+    //     console.log('j t', this)
+    //     return `Goodbye, ${this.who}!`
+    //   }
+    // }
+    // console.log(object.greet())
+    // console.log(object.farewell())
+
+    // 节流测试this
+    function throttle(fn, period) {
+      let timer = null
+      let start = new Date().getTime()
+      return function (...arg) {
+        let curr = new Date().getTime()
+        if (curr - start >= period) {
+          fn.apply(this, [...arg])
+          start = curr
+        }
+      }
+    }
+
+    // 继承
+
+    function a () { // 函数对象 有 _proto_ 和 prototype
+      this.name = 'a'
+      return function b () {
+        this.age = 10
+      }
+    }
+
+    // prototype是一个对象，都有constructor属性
+
+    let ai = new a() // 函数对象 有 _proto_ fun.pro 和 prototype，但是prototype不好找
+    let aii = new ai() // 对象 只有 _proto_
+
+    // function b () {
+    //   a.call(this)
+    //   this.age = 10
+    // }
+
+    // b.prototype = Object.create(a.prototype)
+    // b.prototype.constructor = b
+    // let bi = new b()
+    // console.log(bi)
+
+
+    
+  </script>
+</html>

@@ -27,7 +27,7 @@ class Events {
     while ((event = events.shift())) {
       list = calls[event]
       node = list ? list.tail : {}
-      node.next = tail = { s: new Date().getTime() }  // 将最新加入的回调赋值给tail
+      node.next = tail = { s: new Date().getTime() }  // 将最新加入的回调赋值给tail，tail永远是最后一个
       node.context = context
       node.callback = callback
       calls[event] = {
@@ -58,9 +58,11 @@ class Events {
   off (events, callback, context) {
     console.log('==off== param', events)
     let event, calls, node, tail, cb, ctx
+    // 回调队列里没有cb 直接返回
     if (!(calls = this.callbacks)) {
       return this
     }
+    // 清空回调队列
     if (!(events || callback || context)) {
       delete this.callbacks
       return this
@@ -102,7 +104,9 @@ class Events {
     }
     events = events.split(Events.eventSplitter)
     rest = [].slice.call(arguments, 1)
+    // 这是个双层循环
     while ((event = events.shift())) {    
+      // 其中一个事件，node是事件对应的链表节点
       if ((node = calls[event])) {
         console.log('TRIGGER node', node)
         tail = node.tail
