@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html,body,.layout{
+      height: 100%;
+    }
+    .layout{
+      padding: 0 200px; /* 内部的布局在padding内浮动 */ 
+      background-color: cadetblue;
+    }
+    .main{
+      float: left;
+      width: 100%;
+      height: 100%;
+      background-color: antiquewhite;
+    }
+    .aside {
+      float: left;
+      height: 100%;
+      background-color: azure;
+    }
+    .left{
+      position: relative;
+      left: -200px;
+      margin-left: -100%; /* 浮动的原因跑到了下一层，需要拉回到上一层 */
+      width: 200px;
+    }
+    .right{
+      position: relative;
+      right: -200px;
+      margin-left: -200px; /* 浮动的原因跑到了下一层，需要拉回上一层 */
+      width: 200px;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div class="layout">
+    <div class="main"></div>
+    <div class="aside left"></div>
+    <div class="aside right"></div>
+  </div>
+
+</body>
+</html>

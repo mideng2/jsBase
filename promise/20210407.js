@@ -6,6 +6,8 @@
    * 3）成功、失败回调队列中的函数执行后，会被清除
    * 4）判断resolve，reject的参数是否是promise，使用了instanceof
    * 5）then方法中，如果参数是promise，使用了promise.then(nextresovle, nextreject)，更合理
+   * 
+   * 6）resovle和reject不是完全一样的执行步骤，上一步如果是promise的话
   */
   
   // 判断变量否为function

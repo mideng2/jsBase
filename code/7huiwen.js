@@ -18,3 +18,8 @@ var isPalindrome = function(x) {
 };
 
 console.log(isPalindrome(121221))
+
+/** 判断是否是回文
+1)字符串，根据长度的二分之一，判断是否是一头一尾是否相等
+2）数字，根据%创建数组，还是判断一头一尾是否相等
+*/

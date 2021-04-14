@@ -25,7 +25,6 @@ function getType(obj) {
 function deepCopy(ori) {
   const type = getType(ori);
   let copy;
-  let Constructor = ori.constructor
   switch (type) {
     case 'array':
       return copyArray(ori, type, copy);
@@ -34,9 +33,9 @@ function deepCopy(ori) {
     case 'function':
       return copyFunction(ori, type, copy);
     case 'regExp':
-      return new Constructor(ori)
+      return new RegExp(ori)
     case 'date':
-      return new Constructor(ori.getTime())
+      return new Date(ori.getTime())
     default:
       return ori;
   }
@@ -68,9 +67,12 @@ function copyFunction(ori, type, copy = () => {}) {
 
 // 只解决date，reg类型，其他的可以自己添加
 // 结构化拷贝，这个蛮厉害的
+function isObj (val) {
+  return val !== null && typeof val === 'object' 
+}
 function deepCopyByCtor(obj, hash = new WeakMap()) {
     let cloneObj
-    let Constructor = obj.constructor
+    let Constructor = obj.constructor // 只有对象猜有constructor，普通值没有，也不需要深拷贝
     switch(Constructor){
         case RegExp:
             cloneObj = new Constructor(obj)
@@ -79,12 +81,12 @@ function deepCopyByCtor(obj, hash = new WeakMap()) {
             cloneObj = new Constructor(obj.getTime())
             break
         default:
-            if(hash.has(obj)) return hash.get(obj)
+            if(hash.has(obj)) return hash.get(obj) // 避免循环引用
             cloneObj = new Constructor()
             hash.set(obj, cloneObj)
     }
     for (let key in obj) {
-        cloneObj[key] = isObj(obj[key]) ? deepCopy(obj[key], hash) : obj[key];
+        cloneObj[key] = isObj(obj[key]) ? deepCopyByCtor(obj[key], hash) : obj[key];
     }
     return cloneObj
 }

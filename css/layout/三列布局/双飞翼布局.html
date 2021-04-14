@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html,body,.layout,.main,.aside{
+      height: 100%;
+    }
+    .layout{
+      background-color: cadetblue;
+    }
+    .main{
+      float: left;
+      width: 100%;
+      background-color: antiquewhite;
+    }
+    .inner{
+      margin: 0 200px;
+    }
+    .aside {
+      float: left;
+      width: 200px;
+      background-color: azure;
+    }
+    .left{
+      margin-left: -100%; /* float会相互影响，必须要left right同时设置margin-left才能让right回到上一个的末尾 */
+    }
+    .right{
+      margin-left: -200px;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div class="layout">
+    <div class="main">
+      <div class="inner"></div>
+    </div>
+    <div class="aside left"></div>
+    <div class="aside right"></div>
+  </div>
+
+</body>
+</html>

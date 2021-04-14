@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrapper {
+        /* 声明一个容器 */
+        display: grid;
+        /*  声明列的宽度  */
+        grid-template-columns: repeat(3, 200px);
+        /*  声明行间距和列间距  */
+        grid-gap: 20px;
+        /*  声明行的高度  */
+        grid-template-rows: 100px 200px 300px;
+
+        grid-template-areas:
+          '. header  header1'
+          '. sidebar content';
+      }
+      
+      .item {
+        text-align: center;
+        font-size: 200%;
+        color: #fff;
+      }
+
+      .sidebar {
+        grid-area: sidebar;
+        background: #bee7e9;
+      }
+
+      .content {
+        grid-area: content;
+        background: #e6ceac;
+      }
+
+      .header {
+        grid-area: header;
+        background: #ecad9e;
+      }
+      .header1{
+        grid-area: header1;
+        background-color: darkorchid;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header1">header1</div>
+      <div class="content">content2</div>
+      <div class="sidebar">sidebar</div>
+      <div class="content">content1</div>
+      <div class="header">header2</div>
+      <div class="header">header2</div>
+      <div class="header">header2</div>
+      <div class="header">header2</div>
+    </div>
+  </body>
+</html>

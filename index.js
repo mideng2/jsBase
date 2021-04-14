@@ -224,6 +224,17 @@ const newObj = myNew(testNewFun, 'foo');
 
 console.log(newObj); // {}
 console.log(newObj instanceof testNewFun); // false
+
+// 这个new的实现更简洁一点
+function myNew1(Con, ...args) { 
+  let obj = {} 
+  Object.setPrototypeOf(obj, Con.prototype) 
+  let result = Con.apply(obj, args) 
+  return result instanceof Object ? result : obj 
+}
+
+
+
 // class 实现继承
 // 主要使用 es5 跟 es6 对比看下 class 继承的原理
 
@@ -797,4 +808,41 @@ function copyFunction(ori, type, copy = () => {}) {
   const fun = eval(ori.toString());
   fun.prototype = ori.prototype
   return fun
+}
+
+// weakmap方式深拷贝
+// 利用 WeakMap 解决循环引用
+let map = new WeakMap()
+function deepClone(obj) {
+  if (obj instanceof Object) {
+    if (map.has(obj)) {
+      return map.get(obj)
+    }
+    let newObj
+    if (obj instanceof Array) {
+      newObj = []     
+    } else if (obj instanceof Function) {
+      newObj = function() {
+        return obj.apply(this, arguments)
+      }
+    } else if (obj instanceof RegExp) {
+      // 拼接正则
+      newobj = new RegExp(obj.source, obj.flags)
+    } else if (obj instanceof Date) {
+      newobj = new Date(obj)
+    } else {
+      newObj = {}
+    }
+    // 克隆一份对象出来
+    let desc = Object.getOwnPropertyDescriptors(obj)
+    let clone = Object.create(Object.getPrototypeOf(obj), desc)
+    map.set(obj, clone)
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        newObj[key] = deepClone(obj[key])
+      }
+    }
+    return newObj
+  }
+  return obj
 }

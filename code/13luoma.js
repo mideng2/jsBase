@@ -23,7 +23,7 @@ var luoma = function (s) {
     let index = s.indexOf(key)
     if (index > -1) {
       num = num + special[key]
-      s = s.substr(0, index) + s.substr(index + 2)
+      s = s.substr(0, index) + s.substr(index + key.length)
     }
   }
 
@@ -42,4 +42,4 @@ var luoma = function (s) {
   
 }
 
-console.log(luoma('IX'))
+console.log(luoma('IXM'))

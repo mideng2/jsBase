@@ -4,6 +4,7 @@
  * @param {string} s
  * @return {number}
  */
+// 最长字串长度
 var lengthOfLongestSubstring = function(s) {
   s = s.split('')
   if (s.length < 1) {
@@ -13,7 +14,7 @@ var lengthOfLongestSubstring = function(s) {
   let right = -1
   let keyMap = {}
   let max = 0
-
+// 判断条件应该是下一个是不是和当前的一样，一样的
   while (left < s.length) {
     console.log(keyMap)
       let next = s[right + 1]
