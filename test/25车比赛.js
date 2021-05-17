@@ -75,16 +75,14 @@ temp = arr[2][0]
 arr[2][0] = arr[1][0]
 arr[1][0] = temp
 // console.log('第二名和第三组第一名交换位置', arr)
-console.log('第二名和第三组第一名交换位置', arr)
-
+console.log('第一名和第三组第一名交换位置，找出第三名有力竞争者', arr) 
 compete()
 
 temp = arr[1][0]
 arr[1][0] = arr[0][0]
 arr[0][0] = temp
-console.log('第一名和第二组第一名交换位置', arr)
-
-compete()
+console.log('第三名有力竞争者和第二名互换', arr)
+compete() // 找到第三名
 
 
 temp = arr[3][0]
@@ -92,7 +90,7 @@ arr[3][0] = arr[0][0]
 arr[0][0] = temp
 console.log('第三名和第四组第一名交换位置', arr)
 
-compete()
+compete() 
 
 
 temp = arr[4][0]
