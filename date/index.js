@@ -1,3 +1,3 @@
-import MyDate from './myDate'
+import MyDate from './my-date'
 
 let nd = new MyDate()

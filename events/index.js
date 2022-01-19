@@ -1,4 +1,4 @@
-const { eventBus } = require('./eventClass')
+const { eventBus } = require('./event-class')
 
 const E1 = 'e1'
 const E2 = 'e2'
